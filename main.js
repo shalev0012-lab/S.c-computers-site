@@ -77,3 +77,56 @@ document.addEventListener('click', function(e) {
 });
 
 loadAccState();
+
+// ─── Scroll Reveal ───
+(function () {
+  // Elements that reveal one-by-one (staggered within their parent)
+  var gridSelectors = [
+    '.service-card',
+    '.why-card',
+    '.process-step',
+    '.faq-item',
+    '.pill'
+  ];
+
+  // Elements that reveal individually (section headers)
+  var singleSelectors = [
+    '.section-tag',
+    '.section-title',
+    '.section-sub',
+    '.contact-box'
+  ];
+
+  // Add reveal class + stagger delay to grid children
+  gridSelectors.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, idx) {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (idx % 4) * 0.11 + 's';
+    });
+  });
+
+  // Add reveal class + small cascading delay to header elements
+  document.querySelectorAll(singleSelectors.join(',')).forEach(function (el) {
+    el.classList.add('reveal');
+    // Find position among sibling reveal elements in same section parent
+    var parent = el.closest('section') || el.parentElement;
+    if (parent) {
+      var siblings = Array.from(parent.querySelectorAll('.section-tag, .section-title, .section-sub'));
+      var idx = siblings.indexOf(el);
+      if (idx >= 0) el.style.transitionDelay = idx * 0.12 + 's';
+    }
+  });
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    observer.observe(el);
+  });
+})();
