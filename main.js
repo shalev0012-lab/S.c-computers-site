@@ -195,7 +195,8 @@ loadAccState();
   var autoTimer    = null;
   var progressRaf  = null;
   var progressStart = null;
-  var paused       = false;
+  var paused        = false;
+  var manualPaused  = false;
 
   function goTo(idx) {
     slides[current].classList.remove('active');
@@ -210,13 +211,17 @@ loadAccState();
     dots[current].classList.add('active');
     dots[current].setAttribute('aria-selected', 'true');
     var newVid = slides[current].querySelector('.hvp-video');
-    if (newVid) { newVid.currentTime = 0; newVid.play().catch(function() {}); }
+    if (newVid) {
+      newVid.currentTime = 0;
+      if (!manualPaused) newVid.play().catch(function() {});
+    }
 
     resetProgress();
-    if (!paused) scheduleNext();
+    if (!paused && !manualPaused) scheduleNext();
   }
 
   function scheduleNext() {
+    if (manualPaused) return;
     clearTimeout(autoTimer);
     autoTimer = setTimeout(function() { goTo(current + 1); }, DURATION);
   }
@@ -237,10 +242,33 @@ loadAccState();
   window.hvpNext  = function() { cancelAnimationFrame(progressRaf); clearTimeout(autoTimer); goTo(current + 1); };
   window.hvpGoTo  = function(n) { cancelAnimationFrame(progressRaf); clearTimeout(autoTimer); goTo(n); };
 
+  window.hvpTogglePause = function() {
+    manualPaused = !manualPaused;
+    var btn = document.getElementById('hvpPauseBtn');
+    var vid = slides[current].querySelector('.hvp-video');
+    if (manualPaused) {
+      clearTimeout(autoTimer);
+      cancelAnimationFrame(progressRaf);
+      if (vid) vid.pause();
+      if (btn) btn.setAttribute('aria-label', 'הפעל סרטון');
+      if (btn) btn.classList.add('is-paused');
+    } else {
+      if (vid) vid.play().catch(function() {});
+      resetProgress();
+      scheduleNext();
+      if (btn) btn.setAttribute('aria-label', 'השהה סרטון');
+      if (btn) btn.classList.remove('is-paused');
+    }
+  };
+
   var panel = document.querySelector('.hero-video-panel');
   if (panel) {
-    panel.addEventListener('mouseenter', function() { paused = true; clearTimeout(autoTimer); cancelAnimationFrame(progressRaf); });
-    panel.addEventListener('mouseleave', function() { paused = false; resetProgress(); scheduleNext(); });
+    panel.addEventListener('mouseenter', function() {
+      if (!manualPaused) { paused = true; clearTimeout(autoTimer); cancelAnimationFrame(progressRaf); }
+    });
+    panel.addEventListener('mouseleave', function() {
+      if (!manualPaused) { paused = false; resetProgress(); scheduleNext(); }
+    });
 
     var touchStartX = null;
     panel.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
