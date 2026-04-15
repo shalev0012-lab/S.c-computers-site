@@ -122,6 +122,11 @@
       אבחון ותיקון מחשבים נייחים וניידים, שדרוג חומרה, הסרת וירוסים, הרכבה והתקנת מערכות קצה ומחשבי גיימינג.
     </p>
 
+    <p class="hero-about" data-reveal="up" style="--d:.17s">
+      טכנאי מנוסה ומקצועי, עם ידע נרחב באבחון ופתרון תקלות מחשוב.<br/>
+      ניסיון מעשי של שנים בתחום, מתמחה באבחון מדויק ופתרון תקלות במהירות ויעילות, מגיע עד אליך עם יחס אישי, אמין, סבלנות ושקיפות מלאה.
+    </p>
+
     <div class="hero-btns" data-reveal="up" style="--d:.22s">
       <a href="#contact" class="btn-primary">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -179,6 +184,26 @@
           <source src="videos/video2.mp4" type="video/mp4">
         </video>
       </div>
+      <div class="hvp-slide">
+        <video class="hvp-video" muted loop playsinline preload="auto">
+          <source src="videos/video3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hvp-slide">
+        <video class="hvp-video" muted loop playsinline preload="auto">
+          <source src="videos/video4.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hvp-slide">
+        <video class="hvp-video" muted loop playsinline preload="auto">
+          <source src="videos/video5.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hvp-slide">
+        <video class="hvp-video" muted loop playsinline preload="auto">
+          <source src="videos/video6.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
 
     <!-- Arrow + dot controls at bottom -->
@@ -186,9 +211,21 @@
       <button class="hvp-arrow" onclick="hvpPrev()" aria-label="סרטון קודם">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
+
+      <button class="hvp-pause" id="hvpPauseBtn" onclick="hvpTogglePause()" aria-label="השהה סרטון">
+        <!-- pause icon (default) -->
+        <svg class="hvp-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="3" width="4" height="18" rx="1"/><rect x="15" y="3" width="4" height="18" rx="1"/></svg>
+        <!-- play icon (shown when paused) -->
+        <svg class="hvp-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+
       <div class="hvp-dots">
         <button class="hvp-dot active" onclick="hvpGoTo(0)" aria-label="סרטון 1"></button>
         <button class="hvp-dot"        onclick="hvpGoTo(1)" aria-label="סרטון 2"></button>
+        <button class="hvp-dot"        onclick="hvpGoTo(2)" aria-label="סרטון 3"></button>
+        <button class="hvp-dot"        onclick="hvpGoTo(3)" aria-label="סרטון 4"></button>
+        <button class="hvp-dot"        onclick="hvpGoTo(4)" aria-label="סרטון 5"></button>
+        <button class="hvp-dot"        onclick="hvpGoTo(5)" aria-label="סרטון 6"></button>
       </div>
       <button class="hvp-arrow" onclick="hvpNext()" aria-label="סרטון הבא">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
