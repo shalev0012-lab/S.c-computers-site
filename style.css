@@ -1067,7 +1067,7 @@ body.acc-no-anim [data-reveal].revealed {
   .hero-visual { max-width: 100%; }
   .hero-video-panel {
     width: 100%;
-    height: clamp(260px, 45vw, 380px);
+    height: clamp(400px, 70vh, 600px);
     border-radius: 16px;
   }
 }
