@@ -283,3 +283,64 @@ loadAccState();
   resetProgress();
   scheduleNext();
 })();
+
+// ── Contact Form → WhatsApp ──────────────────────
+window.selectService = function(value) {
+  var select = document.getElementById('formSubject');
+  if (!select) return;
+  for (var i = 0; i < select.options.length; i++) {
+    if (select.options[i].value === value) {
+      select.selectedIndex = i;
+      break;
+    }
+  }
+  var contact = document.getElementById('contact');
+  if (contact) {
+    var offset = contact.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  }
+  select.classList.add('highlight');
+  setTimeout(function() { select.classList.remove('highlight'); }, 1800);
+};
+
+(function() {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  function setError(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.classList.add('error');
+      el.addEventListener('input', function rm() { el.classList.remove('error'); el.removeEventListener('input', rm); });
+      el.addEventListener('change', function rm() { el.classList.remove('error'); el.removeEventListener('change', rm); });
+    }
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var name    = document.getElementById('formName').value.trim();
+    var phone   = document.getElementById('formPhone').value.trim();
+    var email   = document.getElementById('formEmail').value.trim();
+    var subject = document.getElementById('formSubject').value;
+    var message = document.getElementById('formMessage').value.trim();
+
+    var valid = true;
+    if (!name)    { setError('formName');    valid = false; }
+    if (!phone)   { setError('formPhone');   valid = false; }
+    if (!subject) { setError('formSubject'); valid = false; }
+    if (!valid) return;
+
+    var text = '*פנייה חדשה – S.C פתרונות מחשוב*\n';
+    text += '━━━━━━━━━━━━━━━━━━━━\n\n';
+    text += '*שם:* ' + name + '\n';
+    text += '*טלפון:* ' + phone + '\n';
+    if (email) text += '*דואר:* ' + email + '\n';
+    text += '*שירות מבוקש:* ' + subject + '\n';
+    if (message) text += '*פרטים:* ' + message + '\n';
+    text += '\n━━━━━━━━━━━━━━━━━━━━';
+
+    var url = 'https://wa.me/972526323991?text=' + encodeURIComponent(text);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  });
+})();
