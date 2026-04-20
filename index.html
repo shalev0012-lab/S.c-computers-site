@@ -151,7 +151,6 @@
   </script>
 </head>
 <body>
-<div id="page-wrap">
 
 <!-- ════ NAV ════ -->
 <header class="site-header">
@@ -172,18 +171,27 @@
       <a href="#contact"  class="nav-link" data-section="contact">צור קשר</a>
     </div>
 
-    <!-- CTA (left in RTL, desktop only) -->
-    <a href="tel:0515060413" class="cta-nav" aria-label="התקשר 051-506-0413">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-      התקשר עכשיו
-    </a>
+    <!-- Right side: CTA + dark toggle + hamburger -->
+    <div class="nav-end">
+      <a href="tel:0515060413" class="cta-nav" aria-label="התקשר 051-506-0413">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        התקשר עכשיו
+      </a>
 
-    <!-- Hamburger button (mobile only, left side in RTL) -->
-    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobileMenu">
-      <span class="ham-line"></span>
-      <span class="ham-line"></span>
-      <span class="ham-line"></span>
-    </button>
+      <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="עבור למצב כהה">
+        <!-- Moon (shown in light mode) -->
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <!-- Sun (shown in dark mode) -->
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+
+      <!-- Hamburger button (mobile only) -->
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+    </div>
 
   </nav>
 
@@ -201,6 +209,8 @@
   </div>
 
 </header>
+
+<div id="page-wrap">
 
 <main>
 
@@ -221,17 +231,24 @@
 
     <h1 id="hero-heading" data-reveal="up">
       טכנאי ומעבדת מחשבים<br/>
-      <span class="accent-word">רחובות והסביבה - שירות עד הבית</span>
+      <span class="accent-word accent-location">רחובות והסביבה</span><br/>
+      <span class="accent-word accent-service">שירות עד הבית</span>
     </h1>
 
-    <p class="hero-lead" data-reveal="up" style="--d:.12s">
-      S.C פתרונות מחשוב - טכנאי מחשבים מקצועי ומעבדת מחשבים ברחובות. אבחון ותיקון מחשבים נייחים וניידים, שדרוג חומרה, הסרת וירוסים, שחזור נתונים, הרכבה והתקנת מערכות ומחשבי גיימינג.
-    </p>
+    <div class="hero-text-boxes" data-reveal="up" style="--d:.12s">
+      <div class="hero-text-box">
+        <p class="hero-lead">
+          S.C פתרונות מחשוב - טכנאי מחשבים מקצועי ומעבדת מחשבים ברחובות. אבחון ותיקון מחשבים נייחים וניידים, שדרוג חומרה, הסרת וירוסים, שחזור נתונים, הרכבה והתקנת מערכות ומחשבי גיימינג.
+        </p>
+      </div>
 
-    <p class="hero-about" data-reveal="up" style="--d:.17s">
-      טכנאי מחשבים מנוסה עם ידע נרחב באבחון ופתרון תקלות מחשוב.<br/>
-      ניסיון מעשי של שנים, מתמחה באבחון מדויק ופתרון תקלות במהירות ויעילות, מגיע עד אליך עם יחס אישי, אמין, סבלנות ושקיפות מלאה.
-    </p>
+      <div class="hero-text-box">
+        <p class="hero-about">
+          טכנאי מחשבים מנוסה עם ידע נרחב באבחון ופתרון תקלות מחשוב.<br/>
+          ניסיון מעשי של שנים, מתמחה באבחון מדויק ופתרון תקלות במהירות ויעילות, מגיע עד אליך עם יחס אישי, אמין, סבלנות ושקיפות מלאה.
+        </p>
+      </div>
+    </div>
 
     <div class="hero-btns" data-reveal="up" style="--d:.22s">
       <a href="#contact" class="btn-primary">
