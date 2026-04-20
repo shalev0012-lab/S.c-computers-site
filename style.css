@@ -603,7 +603,7 @@ section { position: relative; }
 .services-bento {
   display: grid;
   grid-template-columns: 1.35fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr auto;
   gap: 16px;
   min-height: 500px;
 }
@@ -612,6 +612,7 @@ section { position: relative; }
 .svc-3 { grid-column: 3; grid-row: 1; }
 .svc-4 { grid-column: 2; grid-row: 2; }
 .svc-5 { grid-column: 3; grid-row: 2; }
+.svc-6 { grid-column: 2 / span 2; grid-row: 3; }
 
 .service-card {
   background: var(--white);
@@ -648,6 +649,28 @@ section { position: relative; }
 .service-card h3 { font-family: 'Rubik', sans-serif; font-size: 1.08rem; font-weight: 700; color: var(--blue); margin-bottom: 10px; }
 .svc-1 h3 { font-size: 1.4rem; }
 .service-card p { color: var(--gray); font-size: .89rem; line-height: 1.68; }
+
+.svc-repair-label {
+  color: var(--blue); font-size: .82rem; font-weight: 700;
+  margin: 14px 0 4px; letter-spacing: .01em;
+}
+
+.svc-repair-list {
+  list-style: none; padding: 0; margin: 12px 0 0;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.svc-repair-list li {
+  color: var(--gray); font-size: .83rem; line-height: 1.5;
+  padding-right: 20px; position: relative;
+}
+.svc-repair-list li::before {
+  content: '✓';
+  position: absolute; right: 0;
+  color: var(--accent); font-weight: 700; font-size: .85rem;
+}
+
+.svc-6 { background: linear-gradient(135deg, #f0f7ff 0%, var(--white) 60%); }
+.svc-6 .service-icon { background: linear-gradient(135deg, rgba(0,114,255,0.12), rgba(0,198,255,0.18)); }
 
 /* ══════════════════════════════════════
    WHY US — light surface, 4 cols
@@ -943,6 +966,17 @@ section { position: relative; }
   transition: color .2s;
 }
 .contact-strip-num:hover { color: var(--accent-lt); }
+.contact-strip-divider { color: rgba(255,255,255,0.25); font-size: 1.1rem; margin: 0 2px; }
+.contact-strip-email-row {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(255,255,255,0.45); margin-top: 4px;
+}
+.contact-strip-email {
+  font-family: 'Rubik', sans-serif; font-size: 1.05rem; font-weight: 500;
+  color: rgba(255,255,255,0.75); text-decoration: none; direction: ltr;
+  transition: color .2s;
+}
+.contact-strip-email:hover { color: #fff; }
 .contact-strip-hours { color: rgba(255,255,255,0.38); font-size: .82rem; }
 
 /* ── Pricing select button ── */
@@ -1225,13 +1259,14 @@ body.acc-no-anim [data-reveal].revealed {
   .svc-3 { grid-column: 2; grid-row: auto; }
   .svc-4 { grid-column: 1; grid-row: auto; }
   .svc-5 { grid-column: 2; grid-row: auto; }
+  .svc-6 { grid-column: 1 / span 2; grid-row: auto; }
 
   .hero-card-float { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
   .services-bento { grid-template-columns: 1fr; }
-  .svc-1, .svc-2, .svc-3, .svc-4, .svc-5 { grid-column: 1; }
+  .svc-1, .svc-2, .svc-3, .svc-4, .svc-5, .svc-6 { grid-column: 1; }
   .why-grid { grid-template-columns: 1fr; }
   .process-steps { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
