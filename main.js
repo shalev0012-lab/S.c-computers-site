@@ -2,6 +2,18 @@
    S.C פתרונות מחשוב — main.js
    ════════════════════════════════════════════════ */
 
+// ── Dark mode ────────────────────────────────────
+(function () {
+  if (localStorage.getItem('darkMode') === '1') {
+    document.body.classList.add('dark-mode');
+  }
+})();
+
+function toggleDarkMode() {
+  var isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', isDark ? '1' : '0');
+}
+
 // ── Mobile hamburger menu ────────────────────────
 function toggleMobileMenu() {
   var btn  = document.getElementById('hamburger');
