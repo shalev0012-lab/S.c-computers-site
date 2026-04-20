@@ -294,9 +294,9 @@ window.selectService = function(value) {
       break;
     }
   }
-  var contact = document.getElementById('contact');
-  if (contact) {
-    var offset = contact.getBoundingClientRect().top + window.scrollY - 80;
+  var scrollTarget = document.getElementById('contactForm') || document.getElementById('contact');
+  if (scrollTarget) {
+    var offset = scrollTarget.getBoundingClientRect().top + window.scrollY - 90;
     window.scrollTo({ top: offset, behavior: 'smooth' });
   }
   select.classList.add('highlight');
@@ -340,7 +340,7 @@ window.selectService = function(value) {
     if (message) text += '*פרטים:* ' + message + '\n';
     text += '\n━━━━━━━━━━━━━━━━━━━━';
 
-    var url = 'https://wa.me/972526323991?text=' + encodeURIComponent(text);
+    var url = 'https://wa.me/972515060413?text=' + encodeURIComponent(text);
     window.open(url, '_blank', 'noopener,noreferrer');
   });
 })();
